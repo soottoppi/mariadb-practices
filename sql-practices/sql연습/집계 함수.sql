@@ -1,0 +1,37 @@
+-- 집계 쿼리 : select 그룹함수가 적용된 경우
+select avg(salary)
+	from salaries;
+    
+-- select 절에 그룹 함수가 있는 경우, 어떤 컬럼도 select절에 올 수 없다.
+-- emp_no는 아무 의미가 없다.
+-- 오류!!!!
+select emp_no, avg(salary)
+	from salaries;
+    
+-- query 실행 순서
+-- (1) from : 접근 테이블 확인
+-- (2) where : 조건에 맞는 row 선택
+-- (3) 집계
+-- (4) projection
+select avg(salary)
+	from salaries
+where emp_no = '10060';
+
+-- group by 절에 참여하고 있는 컬럼은 projection이 가능하다(select 절에 올 수 있다)
+select emp_no, avg(salary) as avg_salary
+	from salaries
+group by emp_no
+order by avg(salary);
+
+-- having
+select emp_no, avg(salary)
+	from salaries
+group by emp_no
+	having avg(salary) > 60000;
+
+-- order by
+select emp_no, avg(salary)
+	from salaries
+group by emp_no
+	having avg(salary) > 60000
+order by avg(salary) asc;
