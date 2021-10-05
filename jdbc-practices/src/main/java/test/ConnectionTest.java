@@ -14,7 +14,7 @@ public class ConnectionTest {
 			
 			// 2. 연결하기
 			String url = "jdbc:mysql://127.0.0.1:3306/webdb";
-			conn = DriverManager.getConnection(url, "webd2b", "webd2b");
+			conn = DriverManager.getConnection(url, "webdb", "webdb");
 			
 			System.out.println("연결 성공");
 		} catch (ClassNotFoundException e) {
