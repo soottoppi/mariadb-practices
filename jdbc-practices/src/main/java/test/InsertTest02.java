@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class InsertTest02 {
 
@@ -33,7 +32,7 @@ public class InsertTest02 {
 
 			// 4. 바인딩(binding)
 			pstmt.setString(1, name);
-			
+
 			// 5. SQL 실행(하기전에 워크벤치에서 연습)
 			int count = pstmt.executeUpdate();
 			if (count == 1) {
