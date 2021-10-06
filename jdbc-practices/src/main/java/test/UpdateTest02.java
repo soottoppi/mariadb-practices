@@ -11,9 +11,9 @@ public class UpdateTest02 {
 		DeptVo vo = new DeptVo();
 		vo.setNo(11L);
 		vo.setName("전략기획팀");
-		
+
 		Boolean result = update(vo);
-		if(result) {
+		if (result) {
 			System.out.println("성공!");
 		} else {
 			System.out.println("실패!");
@@ -33,17 +33,17 @@ public class UpdateTest02 {
 			conn = DriverManager.getConnection(url, "hr", "hr");
 
 			// 3. Statement 생성
-			String sql = "update dept set name=? where no=?"; 
+			String sql = "update dept set name=? where no=?";
 			pstmt = conn.prepareStatement(sql);
 
 			// 4. binding
 			pstmt.setString(1, vo.getName());
 			pstmt.setLong(2, vo.getNo());
-			
+
 			// 5. SQL 실행(하기전에 워크벤치에서 연습)
 			int count = pstmt.executeUpdate();
 			result = count == 1;
-			
+
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 로딩 실패");
 		} catch (SQLException e) {
