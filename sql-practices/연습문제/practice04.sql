@@ -103,56 +103,56 @@ limit 0, 1;
 -- 문제 8.
 -- 현재 자신의 매니저보다 높은 연봉을 받고 있는 직원은?
 -- 부서이름, 사원이름, 연봉, 매니저 이름, 메니저 연봉 순으로 출력합니다.
-select d.dept_name, e.first_name, e.last_name, s.salary
-	from employees e, salaries s, departments d,
-    ( select dm.dept_no as managerDeptNo, s.salary as manager_salary
-		from salaries s, dept_manager dm
-	where s.to_date = '9999-01-01'
-		and dm.to_date = '9999-01-01'
-		and s.emp_no = dm.emp_no) as a
-where e.emp_no = s.emp_no
-    and s.to_date = '9999-01-01'
-	and s.salary > a.manager_salary
-    and a.managerDeptNo = d.dept_no;
-
-select	dm.dept_no, s.salary
-	from salaries s, dept_manager dm
-where s.to_date = '9999-01-01'
-	and dm.to_date = '9999-01-01'
-    and s.emp_no = dm.emp_no;
-    
-select *
-	from employees e, salaries s, dept_manager dm, departments d
-where e.emp = s.emp_no
-	and dm.emp_no = e.emp_no
-    and d.dept_no = dm.dept_no
-    and dm.to_date = '9999-01-01'
-    and s.to_date = '9999-01-01'
-    and s.salary >= ;
-    
-SELECT 
-    f.dept_name AS '부서이름',
-    a.first_name AS '사원이름',
-    d.salary AS '연봉',
-    g.first_name AS '매니저 이름',
-    e.salary AS '매니저 연봉'
-FROM
-    employees a,
-    dept_emp b,
-    dept_manager c,
-    salaries d,
-    salaries e,
-    departments f,
-    employees g
-WHERE
-    a.emp_no = b.emp_no
-        AND c.dept_no = b.dept_no
-        AND a.emp_no = d.emp_no
-        AND c.emp_no = e.emp_no
-        AND c.dept_no = f.dept_no
-        AND c.emp_no = g.emp_no
-        AND b.to_date = '9999-01-01'
-        AND c.to_date = '9999-01-01'
-        AND d.to_date = '9999-01-01'
-        AND e.to_date = '9999-01-01'
-        AND d.salary > e.salary;
+--select d.dept_name, e.first_name, e.last_name, s.salary
+--	from employees e, salaries s, departments d,
+--    ( select dm.dept_no as managerDeptNo, s.salary as manager_salary
+--		from salaries s, dept_manager dm
+--	where s.to_date = '9999-01-01'
+--		and dm.to_date = '9999-01-01'
+--		and s.emp_no = dm.emp_no) as a
+--where e.emp_no = s.emp_no
+--    and s.to_date = '9999-01-01'
+--	and s.salary > a.manager_salary
+--    and a.managerDeptNo = d.dept_no;
+--
+--select	dm.dept_no, s.salary
+--	from salaries s, dept_manager dm
+--where s.to_date = '9999-01-01'
+--	and dm.to_date = '9999-01-01'
+--    and s.emp_no = dm.emp_no;
+--    
+--select *
+--	from employees e, salaries s, dept_manager dm, departments d
+--where e.emp = s.emp_no
+--	and dm.emp_no = e.emp_no
+--    and d.dept_no = dm.dept_no
+--    and dm.to_date = '9999-01-01'
+--    and s.to_date = '9999-01-01'
+--    and s.salary >= ;
+--    
+--SELECT 
+--    f.dept_name AS '부서이름',
+--    a.first_name AS '사원이름',
+--    d.salary AS '연봉',
+--    g.first_name AS '매니저 이름',
+--    e.salary AS '매니저 연봉'
+--FROM
+--    employees a,
+--    dept_emp b,
+--    dept_manager c,
+--    salaries d,
+--    salaries e,
+--    departments f,
+--    employees g
+--WHERE
+--    a.emp_no = b.emp_no
+--        AND c.dept_no = b.dept_no
+--        AND a.emp_no = d.emp_no
+--        AND c.emp_no = e.emp_no
+--        AND c.dept_no = f.dept_no
+--        AND c.emp_no = g.emp_no
+--        AND b.to_date = '9999-01-01'
+--        AND c.to_date = '9999-01-01'
+--        AND d.to_date = '9999-01-01'
+--        AND e.to_date = '9999-01-01'
+--        AND d.salary > e.salary;
