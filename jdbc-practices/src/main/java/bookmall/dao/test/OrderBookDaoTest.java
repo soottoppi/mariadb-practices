@@ -4,10 +4,9 @@ import java.util.List;
 
 import bookmall.dao.BookDao;
 import bookmall.dao.OrderBookDao;
-import bookmall.vo.BookVo;
 import bookmall.vo.OrderBookVo;
 
-public class BookDaoTest {
+public class OrderBookDaoTest {
 
 	public static void main(String[] args) {
 		insertTest();
@@ -23,15 +22,16 @@ public class BookDaoTest {
 		
 		vo = new OrderBookVo();
 		vo.setOrderNo(1L);
-		vo.setBookNo(2L);
+		vo.setBookNo(1L);
 		vo.setAmount(10L);
 		dao.insert(vo);
 		
 		vo = new OrderBookVo();
 		vo.setOrderNo(1L);
 		vo.setBookNo(2L);
-		vo.setAmount(10L);
+		vo.setAmount(30L);
 		dao.insert(vo);
+		
 		
 	}
 	

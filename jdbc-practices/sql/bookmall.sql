@@ -46,3 +46,9 @@ select * from orders;
 
 -- update
 update orders set shipping_address = '부산시 동래구' where member_no = 2 and order_number = 1;
+
+-- OrderBook --
+-- insert
+insert into order_book values (1, 1, 10);
+-- select
+select * from order_book;
