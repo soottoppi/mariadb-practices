@@ -8,10 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import bookmall.vo.BookVo;
+import bookmall.vo.OrderVo;
 
-public class BookDao {
-	public boolean insert(BookVo vo) {
+public class OrderDao {
+	public boolean insert(OrderVo vo) {
 		boolean result = false;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -19,13 +19,14 @@ public class BookDao {
 			conn = getConnection();
 
 			// 3. SQL문 준비
-			String sql = "insert into book values (null, ?, ?, ?)";
+			String sql = "insert into orders values (null, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 
 			// 4. 바인딩(binding)
-			pstmt.setString(1, vo.getTitle());
-			pstmt.setLong(2, vo.getPrice());
-			pstmt.setLong(3, vo.getCategoryNo());
+			pstmt.setLong(1, vo.getOrderNumber());
+			pstmt.setLong(2, vo.getPaymentPrice());
+			pstmt.setString(3, vo.getShippingAddress());
+			pstmt.setLong(4, vo.getMemberNo());
 			
 
 			// 5. SQL 실행(하기전에 워크벤치에서 연습)
@@ -51,8 +52,8 @@ public class BookDao {
 
 	}
 	
-	public List<BookVo> findAll() {
-		List<BookVo> result = new ArrayList<>();
+	public List<OrderVo> findAll() {
+		List<OrderVo> result = new ArrayList<>();
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -61,7 +62,7 @@ public class BookDao {
 
 			// 3. SQL문 준비
 			String sql = 
-					"select * from book";
+					"select * from orders";
 			pstmt = conn.prepareStatement(sql);
 
 			// 4. 바인딩(binding)
@@ -71,15 +72,17 @@ public class BookDao {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				Long no = rs.getLong(1);
-				String title = rs.getString(2);
-				Long price = rs.getLong(3);
-				Long categoryNo = rs.getLong(4);
+				Long orderNumber = rs.getLong(2);
+				Long paymentPrice = rs.getLong(3);
+				String shippingAddress = rs.getString(4);
+				Long memberNo = rs.getLong(5);
 				
-				BookVo vo = new BookVo();
+				OrderVo vo = new OrderVo();
 				vo.setNo(no);
-				vo.setTitle(title);
-				vo.setPrice(price);
-				vo.setCategoryNo(categoryNo);
+				vo.setOrderNumber(orderNumber);
+				vo.setPaymentPrice(paymentPrice);
+				vo.setShippingAddress(shippingAddress);
+				vo.setMemberNo(memberNo);
 				
 				result.add(vo);
 			}
@@ -106,7 +109,7 @@ public class BookDao {
 		return result;
 	}
 	
-	public boolean update(Long no, Long price) {
+	public boolean update(Long memberNo, Long orderNumber, String shippingAddress) {
 		boolean result = false;
 		
 		Connection conn = null;
@@ -115,13 +118,14 @@ public class BookDao {
 			conn = getConnection();
 
 			// 3. SQL문 준비
-			String sql = "update book set price = ? where no = ?";
+			String sql = "update orders set shipping_address = ? where member_no = ? and order_number = ?";
 				
 			pstmt = conn.prepareStatement(sql);
 
 			// 4. 바인딩(binding)
-			pstmt.setLong(1, price);
-			pstmt.setLong(2, no);
+			pstmt.setString(1, shippingAddress);
+			pstmt.setLong(2, memberNo);
+			pstmt.setLong(3, orderNumber);
 
 			// 5. SQL 실행(하기전에 워크벤치에서 연습)
 			int count = pstmt.executeUpdate();
@@ -160,5 +164,4 @@ public class BookDao {
 		}
 		return conn;
 	}
-	
 }

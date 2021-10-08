@@ -10,9 +10,9 @@ public class MemberDaoTest {
 	public static void main(String[] args) {
 		insertTest();
 		findAllTest();
-		updateTest();
-		System.out.println("---------------------------");
-		findAllTest();
+//		updateTest();
+//		System.out.println("---------------------------");
+//		findAllTest();
 	}
 
 	private static void insertTest() {
@@ -25,6 +25,14 @@ public class MemberDaoTest {
 		vo.setEmail("soo@mail.com");
 		vo.setPassword(1111L);
 		dao.insert(vo);
+		
+		vo = new MemberVo();
+		vo.setName("김고양");
+		vo.setPhoneNumber("010-2222-2222");
+		vo.setEmail("cat@mail.com");
+		vo.setPassword(3333L);
+		dao.insert(vo);
+
 
 
 	}
