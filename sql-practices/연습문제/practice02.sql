@@ -21,17 +21,25 @@ from employees as e,
 	(select emp_no, min(from_date) as a, if(max(to_date) = '9999-01-01', curdate(), max(to_date)) as b
 		from salaries
 	  group by emp_no ) as c
-where 
+where datediff(b,a);
 
 
 
 -- 문제 4
 -- 현재 이 회사의 평균 연봉은 얼마입니까?
 -- where 절에서 현재로 골라준다
+select avg(salary)
+	from salaries
+where to_date = '9999-01-01';
 
 -- 문제 5
 -- 현재 이 회사의 최고/최저 연봉은 얼마입니까?
+select max(salary), min(salary)
+	from salaries
+where to_date = '9999-01-01';
 
 -- 문제 6
 -- 최고 어린 사원의 나이와 최 연장자의 나이는?
 -- birth_date 가지고 구한다
+select max(birth_date) as '최연소자', min(birth_date) as '최연장자'
+	from employees;
