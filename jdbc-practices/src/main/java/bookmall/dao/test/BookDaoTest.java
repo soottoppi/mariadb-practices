@@ -18,26 +18,32 @@ public class BookDaoTest {
 	}
 	
 	private static void insertTest() {
-		OrderBookVo vo = null;
-		OrderBookDao dao = new OrderBookDao();
+		BookVo vo = null;
+		BookDao dao = new BookDao();
 		
-		vo = new OrderBookVo();
-		vo.setOrderNo(1L);
-		vo.setBookNo(2L);
-		vo.setAmount(10L);
+		vo = new BookVo();
+		vo.setTitle("클라이밍의 정석");
+		vo.setPrice(15000L);
+		vo.setCategoryNo(6L);
 		dao.insert(vo);
-		
-		vo = new OrderBookVo();
-		vo.setOrderNo(1L);
-		vo.setBookNo(2L);
-		vo.setAmount(10L);
+
+		vo = new BookVo();
+		vo.setTitle("대겸이의 하루");
+		vo.setPrice(8000L);
+		vo.setCategoryNo(2L);
+		dao.insert(vo);
+
+		vo = new BookVo();
+		vo.setTitle("자바의 정석");
+		vo.setPrice(33000L);
+		vo.setCategoryNo(3L);
 		dao.insert(vo);
 		
 	}
 	
 	private static void findAllTest() {
-		List<OrderBookVo> list = new OrderBookDao().findAll();
-		for(OrderBookVo vo : list) {
+		List<BookVo> list = new BookDao().findAll();
+		for(BookVo vo : list) {
 			System.out.println(vo);
 		}
 	}
